@@ -6,7 +6,7 @@
 
 
 
-{% comment %} {% if user.is_authenticated %} {% endcomment %}
+{% if user.is_authenticated %}
 <h1 class="text-center  mt-3">Online Booking</h1>
 
 <div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 ">
@@ -39,14 +39,14 @@
     </form>
 </div>
 
-{% comment %} {% else %} {% endcomment %}
+{% else %}
 
-{% comment %} <div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 "> {% endcomment %}
-    {% comment %} <h1 class="p-2  me-3">You Are Not Signed in!</h1> {% endcomment %}
-    {% comment %} <a href="{% url 'register' %}" class="btn btn-primary shadow text-center">Sign in</a> {% endcomment %}
-{% comment %} </div> {% endcomment %}
+<div class="shadow p-4 mb-5 bg-body bg-body rounded text-black  m-5 ">
+    <h1 class="p-2  me-3">You Are Not Signed in!</h1>
+    <a href="{% url 'register' %}" class="btn btn-primary shadow text-center">Sign in</a>
+</div>
 
-{% comment %} {% endif %} {% endcomment %}
+{% endif %}
 
 
 {% endblock %}
