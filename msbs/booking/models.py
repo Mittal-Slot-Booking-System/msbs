@@ -24,6 +24,47 @@ TIME_CHOICES = (
     ("3 PM", "3 PM"),
 )
 
+GENDER_CHOICES = (
+    ('M','M'),
+    ('F','F'),
+    ('O','O'),
+)
+
+SWIM_CHOICES = (
+    ('Y','Y'),
+    ('N','N'),
+)
+
+HOSTEL_CHOICES = (
+    ('Satpura','Satpura'),
+    ('Day Scholar','Day Scholar'),
+    ('Shivalik','Shivalik'),
+    ('Jwalamukhi','Jwalamukhi'),
+    ('Aravali','Aravali'),
+    ('Karakoram','Karakoram'),
+    ('Nilgiri','Nilgiri'),
+    ('Vindhyachal','Vindhyachal'),
+    ('Kumaon','Kumaon'),
+    ('Girnar','Girnar'),
+    ('Udaigiri','Udaigiri'),
+    ('Zanskar','Zanskar'),
+    ('Kailash','Kailash'),
+    ('Himadri','Himadri'),
+    ('Sahyadri','Sahyadri'),
+    ('Nalanda','Nalanda'),
+)
+
+DEPT_CHOICES = (
+    ('CSE','CSE'),
+    ('MT','MT'),
+    ('BB','BB'),
+    ('EE','EE'),
+    ('AM','AM'),
+    ('TT','TT'),
+    ('MSE','MSE'),
+    ('CH','CH'),
+    ('SCAI','SCAI'),
+)
 # TIME_CHOICES = (
 #     ("7 AM", "7 AM"),
 #     ("3:30 PM", "3:30 PM"),
@@ -45,3 +86,21 @@ class Appointment(models.Model):
     time_ordered = models.DateTimeField(default=datetime.now, blank=True)
     def __str__(self):
         return f"{self.user.username} | day: {self.day} | time: {self.time}"
+
+class studentuserdata(models.Model):
+    firstname=models.CharField(max_length=100)
+    lastname=models.CharField(max_length=100)
+    guardianfirstname=models.CharField(max_length=100)
+    guardianlastname=models.CharField(max_length=100)
+    age=models.IntegerField()
+    gender=models.CharField(max_length=1, choices=GENDER_CHOICES)
+    mobilenumber=models.CharField(max_length=13)
+    entrynumber=models.CharField(max_length=12)
+    department=models.CharField(max_length=6, choices=DEPT_CHOICES)
+    hostel=models.CharField(max_length=20, choices=HOSTEL_CHOICES)
+    roomnumber=models.CharField(max_length=10)
+    emergencynumber=models.CharField(max_length=13)
+    address=models.CharField(max_length=300)
+    swim=models.CharField(max_length=1, choices=SWIM_CHOICES)
+    slot1=models.CharField(max_length=10, choices=TIME_CHOICES, default="3 PM")
+    slot2=models.CharField(max_length=10, choices=TIME_CHOICES, default="3 PM")
