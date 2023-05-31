@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
+from .functions.functions import handle_uploaded_file
+from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.forms import UserCreationForm
 from .forms import RegisterUserForm
@@ -29,9 +31,10 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        form = RegisterUserForm(request.POST)
+        form = RegisterUserForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            handle_uploaded_file(request.FILES['file'])
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password = password)
