@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'members',
     'medical',
 ]
+
+AUTH_USER_MODEL = "members.CustomUser"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

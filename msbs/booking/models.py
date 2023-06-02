@@ -3,7 +3,9 @@ from django.db import models
 # Create your models here.
 from django.db import models
 from datetime import datetime
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User   #! Now using our custom user
+from django.conf import settings
+User = settings.AUTH_USER_MODEL
 
 SERVICE_CHOICES = (
     ("Doctor care", "Doctor care"),
