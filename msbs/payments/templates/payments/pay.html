@@ -1,0 +1,25 @@
+
+    {% extends 'layout.html' %}
+{% load static %}
+{% block head %}
+    <h2>Payment For Membership</h2>
+{% endblock %}
+{% block body%}
+<br>
+<br>
+{% if error %}
+    <h3>{{ error }}</h3>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Username: </label>
+        <input type="text" name="username" required>
+        <label for="password">Password: </label>
+        <input type="text" name="password" required>
+        <label for="amount">Amount: </label>
+        <input type="number" name="amount" value="100">
+        <input type="submit" name="submit" value="Submit" required>
+    </form>
+    <br>
+    <br>
+{% endblock %}
