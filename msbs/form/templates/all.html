@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Members</h1>
+    <ul>
+    {% for x in all %}
+        <li>{{x.firstname}} {{x.lastname}} {{x.entrynumber}} {{x.guardianfirstname}} {{x.guardianlastname}} {{x.age}} {{x.gender}} {{x.mobilenumber}} {{x.department}} {{x.hostel}} {{x.roomnumber}} {{x.emergencynumber}} {{x.address}} {{x.swim}} {{x.slot1}} {{x.slot2}}</li>
+    {% endfor %}
+    </ul>
+</body>
+</html>

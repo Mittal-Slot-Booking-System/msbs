@@ -23,4 +23,6 @@ urlpatterns = [
     path('members/', include("members.urls")),
     path('medical/', include('django.contrib.auth.urls')),
     path('medical/', include("medical.urls")),
+    path('form/',include("form.urls")),
+    
 ]
