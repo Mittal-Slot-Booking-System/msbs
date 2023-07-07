@@ -1,5 +1,4 @@
-
-    {% extends 'layout.html' %}
+ {% extends 'payments\paylayout.html' %}
 {% load static %}
 {% block head %}
     <h2>Payment For Membership</h2>
@@ -10,16 +9,32 @@
 {% if error %}
     <h3>{{ error }}</h3>
     {% endif %}
-    <form method="post">
-        {% csrf_token %}
-        <label for="username">Username: </label>
-        <input type="text" name="username" required>
-        <label for="password">Password: </label>
-        <input type="text" name="password" required>
-        <label for="amount">Amount: </label>
-        <input type="number" name="amount" value="100">
-        <input type="submit" name="submit" value="Submit" required>
-    </form>
     <br>
-    <br>
+    {% if user.is_authenticated %}
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="flex flex-wrap -mx-4 -mb-10 text-center">
+            <div class="sm:w-1/2 mb-10 px-4">
+              <div class="rounded-lg h-64 overflow-hidden">
+                <img alt="content" class="object-cover object-center h-full w-full" src="https://mittalsports.iitd.ac.in/dashboard/img/carousel-2.jpg">
+              </div>
+              <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Mittal Sports Complex Membership</h2>
+              <p class="leading-relaxed text-base">Click on the Pay Button to pay Rs.2000 for Mittal Sports Complex Membership</p>
+              <form method="post">{% csrf_token %}<input class="flex mx-auto mt-6 text-white bg-red-500 border-0 py-2 px-5 focus:outline-none hover:bg-red-600 rounded" type="submit" name="submit" value="Pay" required></form>
+            </div>
+            <div class="sm:w-1/2 mb-10 px-4">
+              <div class="rounded-lg h-64 overflow-hidden">
+                <img alt="content" class="object-cover object-center h-full w-full" src="https://mittalsports.iitd.ac.in/dashboard/img/carousel-1.jpg">
+              </div>
+              <h2 class="title-font text-2xl font-medium text-gray-900 mt-6 mb-3">Swimming Pool Membership</h2>
+              <p class="leading-relaxed text-base">Click on the Pay Button to pay Rs.2000 for Swimming Pool Membership</p>
+              <form method="post">{% csrf_token %}<input class="flex mx-auto mt-6 text-white bg-red-500 border-0 py-2 px-5 focus:outline-none hover:bg-red-600 rounded" type="submit" name="submit" value="Pay" required></form>
+            </div>
+          </div>
+        </div>
+      </section>
+      {%else%}
+      <h3>Please Authenticate to access this page</h3>
+      {% endif %}
+
 {% endblock %}
