@@ -7,23 +7,26 @@ from django.urls import reverse
 
 def index(request):
     form = None
-    form_type = None
+    form_type=None
     if request.method == 'POST':
-        print(student.objects.all().values())
+       
+            
         form_type = request.POST.get('form_type')
+        
         if form_type == 'student_form':
-            student_instance=student()
+            
             form = StudentForm(request.POST)
-            if form.is_valid():
-                student_instance = student()
-                form = StudentForm(request.POST, instance=student_instance)
+            try:
+                
                 if form.is_valid():
+                    
+                    form_type=request.POST.get('form_type')
                     firstname=request.POST.get('firstname')
                     lastname=request.POST.get('lastname')
                     guardianfirstname=request.POST.get('guardianfirstname')
                     guardianlastname=request.POST.get('guardianlastname')
                     age=request.POST.get('age')
-                    sex=request.POST.get('gender')
+                    gender=request.POST.get('gender')
                     mobilenumber=request.POST.get('mobilenumber')
                     entrynumber=request.POST.get('entrynumber')
                     department=request.POST.get('department')
@@ -33,11 +36,13 @@ def index(request):
                     address=request.POST.get('address')
                     swim=request.POST.get('swim')
                     form.cleaned_data.update({
+                        'form_type':form_type,
                         'firstname': firstname,
                         'lastname': lastname,
                         'guardianfirstname': guardianfirstname,
                         'guardianlastname': guardianlastname,
-                        'sex': sex,
+                        'age':age,
+                        'gender': gender,
                         'mobilenumber': mobilenumber,
                         'entrynumber': entrynumber,
                         'department': department,
@@ -47,42 +52,59 @@ def index(request):
                         'address': address,
                         'swim': swim,
                         })
-
-                form.save()
-                if form.errors:
-                    print(form.errors)
+                    form.save()
+                    return HttpResponse("SAVED")
+                    
+                # if form.errors:
+                #     print(form.errors)
+                    
+            except:
+                print("hi")
+            # if form.errors:
+            #     print("*******")
+            #     print(form.errors)
             
         elif form_type == 'faculty_form':
             form = FacultyForm(request.POST)
-            if form.is_valid():
-                firstname = request.POST.get('firstname')
-                lastname = request.POST.get('lastname')
-                guardianfirstname = request.POST.get('guardianfirstname')
-                guardianlastname = request.POST.get('guardianlastname')
-                age = request.POST.get('age')
-                sex = request.POST.get('gender')
-                mobilenumber = request.POST.get('mobilenumber')
-                entrynumber = request.POST.get('entrynumber')
-                department = request.POST.get('department')
-                emergencynumber = request.POST.get('emergencynumber')
-                address = request.POST.get('address')
-                swim = request.POST.get('swim')
-                form.cleaned_data.update({
-                    'Name': firstname,
-                    'Designation': lastname,
-                    'Family': guardianfirstname,
-                    'Relation': guardianlastname,
-                    'sex': sex,
-                    'mobilenumber': mobilenumber,
-                    'EmpCode': entrynumber,
-                    'department': department,
-                    'emergencynumber': emergencynumber,
-                    'address': address,
-                    'swim': swim,
-                    })
+            try:
+                if form.is_valid():
+                    Name = request.POST.get('Name')
+                    Designation = request.POST.get('Designation')
+                    Family = request.POST.get('Family')
+                    Relation = request.POST.get('Relation')
+                    age = request.POST.get('age')
+                    gender = request.POST.get('gender')
+                    mobilenumber = request.POST.get('mobilenumber')
+                    EmpCode = request.POST.get('EmpCode')
+                    department = request.POST.get('department')
+                    emergencynumber = request.POST.get('emergencynumber')
+                    address = request.POST.get('address')
+                    swim = request.POST.get('swim')
+                    form.cleaned_data.update({
+                        'Name': Name,
+                        'Designation': Designation,
+                        'Family': Family,
+                        'Relation': Relation,
+                        'age':age,
+                        'gender': gender,
+                        'mobilenumber': mobilenumber,
+                        'EmpCode': EmpCode,
+                        'department': department,
+                        'emergencynumber': emergencynumber,
+                        'address': address,
+                        'swim': swim,
+                        })
                 form.save()
                 if form.errors:
                     print(form.errors)
+                return HttpResponse("SAVED")
+
+            except:
+                if form.errors:
+                    print(form.errors)
+                print("hi")
+            # if form.errors:
+            #     print(form.errors)
     
     template=loader.get_template('form.html')
     return render(request,"form.html",{'form':form,'form_type':form_type})
