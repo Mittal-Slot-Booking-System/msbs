@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v_p9jj6rdaf-+oyk3=ms$u&+gl6rr@()!oz!b%uk$2(q*t+)g0
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+APPEND_SLASH=False
 
 # Application definition
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'booking',
     'members',
     'medical',
+    'form',
 ]
 
 MIDDLEWARE = [
